@@ -1,12 +1,16 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Card.css";
 
 function Card(country) {
   const data = country.country;
-  //   console.log("ad ", data.idd);
+  let navigate = useNavigate();
+  function goCountry() {
+    navigate(`/country/${data.name.common}`);
+  }
+
   return (
-    <div className="card">
-      <img className="card__img" src={data.flags.png} alt={data.name.common} />
+    <div onClick={() => goCountry()} className="card">
+      <img className="card__img" src={data.flags.svg} alt={data.name.common} />
       <div className="card__content">
         <h2>{data.name.common}</h2>
         <p className="card__text">

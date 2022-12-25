@@ -12,7 +12,7 @@ export const ROUTES = [
         element: <Home />,
       },
       {
-        path: "country",
+        path: "country/:Data",
         element: <Country />,
       },
     ],
