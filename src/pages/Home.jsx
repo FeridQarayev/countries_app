@@ -6,7 +6,7 @@ function Home() {
     <div className="home">
       <div className="body">
         <div className="body__up">
-          <div className="body__up__left">
+          <div className="body__up__left shadow">
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -22,7 +22,7 @@ function Home() {
             </svg>
             <input type="text" placeholder="Search for country..." />
           </div>
-          <div className="body__up__right">
+          <div className="body__up__right shadow">
             <div className="body__up__right__panel">
               <input type="text" placeholder="Filter by region" />
               <div className="body__up__right__panel__right">
@@ -40,7 +40,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="body__up__right__modal">
+            <div className="body__up__right__modal shadow">
               <p>Africa</p>
               <p>Americas</p>
               <p>Asia</p>
