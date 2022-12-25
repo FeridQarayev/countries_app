@@ -6,7 +6,7 @@ function Card(country) {
   //   console.log("ad ", data.idd);
   return (
     <div className="card">
-      <img className="card__img" src={data.flags.png} alt="Pakistan" />
+      <img className="card__img" src={data.flags.png} alt={data.name.common} />
       <div className="card__content">
         <h2>{data.name.common}</h2>
         <p className="card__text">
