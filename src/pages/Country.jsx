@@ -91,7 +91,11 @@ function Country() {
             <div className="country__body__content__down__borders">
               {country?.borders !== undefined ? (
                 country.borders.map((border) => {
-                  return <p className="border">{border}</p>;
+                  return (
+                    <p key={border} className="border">
+                      {border}
+                    </p>
+                  );
                 })
               ) : (
                 <p>No borders</p>
