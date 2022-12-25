@@ -1,9 +1,20 @@
-import React from 'react'
+import MainRoot from "../pages/MainRoot";
+import Country from "../pages/Country";
+import Home from "../pages/Home";
 
-function route() {
-  return (
-    <div>route</div>
-  )
-}
-
-export default route
+export const ROUTES = [
+  {
+    path: "/",
+    element: <MainRoot />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "country",
+        element: <Country />,
+      },
+    ],
+  },
+];

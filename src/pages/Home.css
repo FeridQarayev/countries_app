@@ -1,0 +1,14 @@
+.home{
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background-color: hsl(0 0% 98% / 1);
+}
+.home .body{
+    font-size: 14px;
+}
+.home .body .body__up{
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    justify-content: space-between;
+}
