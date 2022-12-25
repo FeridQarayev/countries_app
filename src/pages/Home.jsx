@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Card from "../components/Card/Card";
+import axios from "axios";
 
 function Home() {
+  const [countryes, setCountryes] = useState([]);
+
+  useEffect(() => {
+    axios("https://restcountries.com/v3.1/all").then((res) => {
+      setCountryes(res.data);
+    });
+  }, []);
+
   return (
     <div className="home">
       <div className="body">
@@ -11,10 +20,10 @@ function Home() {
             <svg
               stroke="currentColor"
               fill="currentColor"
-              stroke-width="0"
+              strokeWidth="0"
               version="1.1"
               viewBox="0 0 16 16"
-              class="text-Dark_Gray"
+              className="text-Dark_Gray"
               height="18"
               width="18"
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +43,7 @@ function Home() {
                     viewBox="0 0 20 20"
                     aria-hidden="true"
                     focusable="false"
-                    class="css-8mmkcg"
+                    className="css-8mmkcg"
                   >
                     <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
                   </svg>
@@ -51,9 +60,9 @@ function Home() {
           </div>
         </div>
         <div className="body__down">
-          <Card />
-          <Card />
-          <Card />
+          {countryes.map((country) => {
+            return <Card key={country.name.common} country={country} />;
+          })}
         </div>
       </div>
     </div>
