@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import Card from "../components/Card/Card";
 
 function Home() {
   return (
@@ -49,7 +50,11 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="body__down"></div>
+        <div className="body__down">
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
     </div>
   );
