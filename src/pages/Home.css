@@ -108,3 +108,14 @@
 .body__up__right__modal p:hover{
     background-color: rgba(38, 132, 255, 0.347);
 }
+.body__up__right__modal p:first-child{
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+.body__up__right__modal p:last-child{
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+.modal__open{
+    display: block !important;
+}

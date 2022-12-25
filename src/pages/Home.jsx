@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Card from "../components/Card/Card";
 import axios from "axios";
@@ -6,6 +6,9 @@ import axios from "axios";
 function Home() {
   const [countryes, setCountryes] = useState([]);
   const [query, setQuery] = useState("");
+  const [regionState, setRegionState] = useState("");
+  const modal = useRef();
+  const regionInp = useRef();
   // console.log(query);
 
   useEffect(() => {
@@ -14,6 +17,23 @@ function Home() {
     });
   }, []);
 
+  function openModal(e) {
+    modal.current.classList.toggle("modal__open");
+    // console.log(e.target.focus());
+  }
+  if (regionInp?.current !== undefined) {
+    // console.log(regionInp?.current?.parentElement.nextElementSibling.children);
+    Array.from(
+      regionInp?.current?.parentElement.nextElementSibling.children
+    ).map((child) => {
+      child.addEventListener("click", (e) => {
+        regionInp.current.value = e.target.innerText;
+        setRegionState(() => regionInp.current.value.toString());
+        openModal();
+      });
+    });
+  }
+  console.log(regionState);
   return (
     <div className="home">
       <div className="body">
@@ -40,7 +60,14 @@ function Home() {
           </div>
           <div className="body__up__right shadow">
             <div className="body__up__right__panel">
-              <input type="text" placeholder="Filter by region" />
+              <input
+                ref={regionInp}
+                type="text"
+                placeholder="Filter by region"
+                onClick={(e) => {
+                  openModal(e);
+                }}
+              />
               <div className="body__up__right__panel__right">
                 <div className="body__up__right__panel__right__icon">
                   <svg
@@ -56,12 +83,12 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="body__up__right__modal shadow">
+            <div ref={modal} className="body__up__right__modal shadow">
               <p>Africa</p>
               <p>Americas</p>
               <p>Asia</p>
               <p>Europe</p>
-              <p>Ocenia</p>
+              <p>Oceania</p>
             </div>
           </div>
         </div>
@@ -76,13 +103,20 @@ function Home() {
                 return fill;
               }
             })
+            .filter((fillRegion) => {
+              if (regionState === "") {
+                return fillRegion;
+              } else if (
+                fillRegion.region
+                  .toLowerCase()
+                  .includes(regionState.toLowerCase())
+              ) {
+                return fillRegion;
+              }
+            })
             .map((country) => {
               return <Card key={country.name.common} country={country} />;
             })}
-
-          {/* {countryes.map((country) => {
-            return <Card key={country.name.common} country={country} />;
-          })} */}
         </div>
       </div>
     </div>
