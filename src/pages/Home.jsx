@@ -9,6 +9,7 @@ function Home() {
   const [regionState, setRegionState] = useState("");
   const modal = useRef();
   const regionInp = useRef();
+  const home = useRef();
   // console.log(query);
 
   useEffect(() => {
@@ -33,9 +34,19 @@ function Home() {
       });
     });
   }
-  console.log(regionState);
+  if (home?.current?.parentElement?.classList == "dark__fon") {
+    home.current.classList.add("dark__fon__body");
+    const search = home?.current?.children[0]?.children[0];
+    search.classList.add("dark__fon__body__up");
+    const cards = home?.current?.children[0]?.children[1].children;
+    Array.from(cards).forEach((element) => {
+      element.classList.add("dark__fon__card");
+    });
+  }
+
+  // console.log(regionState);
   return (
-    <div className="home">
+    <div ref={home} className="home">
       <div className="body">
         <div className="body__up">
           <div className="body__up__left shadow">

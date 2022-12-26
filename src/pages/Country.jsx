@@ -1,11 +1,26 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Country.css";
 
 function Country() {
   let Data = useParams();
   let [country, setCountry] = useState();
+  const countryPage = useRef();
+
+  if (countryPage?.current?.parentElement?.classList == "dark__fon") {
+    const button = countryPage?.current?.children[0].children[0];
+    const borders =
+      countryPage?.current?.children[1].children[1].children[2].children[1]
+        .children;
+
+    countryPage.current.classList.add("dark__fon__body");
+    button.classList.add("dark__fon_button");
+    Array.from(borders).forEach((item) => {
+      // console.log(item);
+      item.classList.add("dark__fon__border");
+    });
+  }
 
   useEffect(() => {
     axios(`https://restcountries.com/v3.1/name/${Data.Data}`).then((res) => {
@@ -14,7 +29,7 @@ function Country() {
   }, []);
 
   return (
-    <div className="country">
+    <div ref={countryPage} className="country">
       <Link to="/" className="back">
         <button>
           <svg

@@ -2,10 +2,48 @@ import React from "react";
 import "./Navbar.css";
 
 function Navbar() {
+  function changeColor(e) {
+    const header = e.target.parentElement;
+    const body = e.target.parentElement.nextElementSibling;
+    if (body.classList != "country") {
+      const search =
+        e.target.parentElement.nextElementSibling.children[0].children[0];
+      const cards =
+        e.target.parentElement.nextElementSibling.children[0].children[1]
+          .children;
+
+      Array.from(cards).forEach((element) => {
+        element.classList.toggle("dark__fon__card");
+      });
+      search.classList.toggle("dark__fon__body__up");
+    }
+
+    if (body.classList == "country") {
+      const button =
+        e.target.parentElement.nextElementSibling.children[0].children[0];
+      const borders =
+        e.target.parentElement.nextElementSibling.children[1].children[1]
+          .children[2].children[1].children;
+
+      button.classList.toggle("dark__fon_button");
+      Array.from(borders).forEach((item) => {
+        item.classList.toggle("dark__fon__border");
+      });
+    }
+    const root = e.target.parentElement.parentElement;
+
+    root.classList.toggle("dark__fon");
+    header.classList.toggle("dark__fon__header");
+    body.classList.toggle("dark__fon__body");
+  }
   return (
     <header>
       <h1>Where in the world?</h1>
-      <p>
+      <p
+        onClick={(e) => {
+          changeColor(e);
+        }}
+      >
         <svg
           stroke="currentColor"
           fill="currentColor"
